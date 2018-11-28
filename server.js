@@ -22,9 +22,16 @@ var odataServer = ODataServer().model(EntityModel);
 
 // Connection to demo database in MongoDB
 MongoClient.connect("mongodb://localhost/SensorCockpit" , { useNewUrlParser: true }, function (err, db) {
-    odataServer.adapter(Adapter(function (cb) {
-        cb(err, db.db('myodatadb'));
-    }));
+    if (err) {
+        console.error('mongo connection error: ', err.message);
+        reject(err);
+      } else {
+        console.info("connected to mongodb");
+        odataServer.adapter(Adapter(function (cb) {
+            cb(err, db.db('myodatadb'));
+        }));
+      }
+    
 });
 
 app.get('/', function (req, res) {
