@@ -8,7 +8,7 @@ sap.ui.define([
 ], function(jQuery, Controller, History, Device, MessageToast) {
 	"use strict";
 
-	return Controller.extend("de.blogspot.openui5.fc.controller.BaseController", {
+	return Controller.extend("schiller.SensorCockpit.controller.BaseController", {
 
 		getComponent: function() {
 			return sap.ui.core.Component.getOwnerComponentFor(

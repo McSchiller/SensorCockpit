@@ -1,16 +1,16 @@
 {
   "name": "sensorroomapp",
   "version": "1.0.0",
-  "description": "Chart analyser for room sensors",
+  "description": "Cockpit for Sensor data",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/McSchiller/ESP8266-RoomSensor.git"
+    "url": "git+https://github.com/McSchiller/SensorCockpit.git"
   },
-  "author": "Ulofemi",
+  "author": "Andreas Schiller",
   "license": "ISC",
   "dependencies": {
     "cors": "2.8.5",
@@ -20,7 +20,7 @@
     "simple-odata-server-mongodb": "1.0.0"
   },
   "bugs": {
-    "url": "https://github.com/McSchiller/ESP8266-RoomSensor/issues"
+    "url": "https://github.com/McSchiller/SensorCockpit/issues"
   },
-  "homepage": "https://github.com/McSchiller/ESP8266-RoomSensor#readme"
+  "homepage": "https://github.com/McSchiller/SensorCockpit#readme"
 }

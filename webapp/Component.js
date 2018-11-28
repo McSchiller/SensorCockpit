@@ -1,12 +1,12 @@
 sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
-	"de/blogspot/openui5/fc/model/models",
+	"./model/models",
 	"./util/FioriClient"
 ], function(UIComponent, Device, models, FioriClient) {
 	"use strict";
 
-	return UIComponent.extend("de.blogspot.openui5.fc.Component", {
+	return UIComponent.extend("schiller.SensorCockpit.Component", {
 
 		metadata: {
 			manifest: "json"

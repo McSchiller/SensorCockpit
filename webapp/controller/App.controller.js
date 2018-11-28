@@ -2,11 +2,13 @@ sap.ui.define([
 	"jquery.sap.global",
 	"./BaseController",
 	"sap/ui/model/json/JSONModel",
-	"sap/ui/Device"
-], function(jQuery, BaseController, JSONModel, Device) {
+	"sap/ui/Device",
+	'sap/m/Popover',
+	'sap/m/Button'
+], function(jQuery, BaseController, JSONModel, Device, Popover, Button) {
 	"use strict";
 
-	return BaseController.extend("de.blogspot.openui5.fc.controller.App", {
+	return BaseController.extend("schiller.SensorCockpit.controller.App", {
 
 		onInit: function() {
 			// shortcut to FioriClient helper
@@ -23,32 +25,17 @@ sap.ui.define([
 			this.oToolPage = this.byId("toolPage");
 		},
 
-		/*
+		
 		onAfterRendering: function() {
 			// auto expand on tablet
 			if (Device.system.tablet) {
 				this.oToolPage.setSideExpanded(true);
 			}
 		},
-		*/
+		
 		
 		onHelp: function() {
-			sap.m.URLHelper.redirect("https://uacp2.hana.ondemand.com/viewer/p/SAP_FIORI_CLIENT", true);
-		},
-		
-		onPrint: function() {
-			if (this.oFioriClient.isAvailable()) {
-				var oPage = this.getView().byId("idAppControl").getCurrentPage(),
-					$DomRef = oPage.$()[0];
-					
-				// cordova.plugins.printer.isAvailable();
-				
-				// print DOM element
-				cordova.plugins.printer.print($DomRef);
-			} else {
-				// regular print
-				window.print();
-			}
+			sap.m.URLHelper.redirect("https://github.com/McSchiller/SensorCockpit/wiki", true);
 		},
 		
 		onItemSelect: function(oEvent) {
@@ -61,6 +48,33 @@ sap.ui.define([
 
 		onSideNavButtonPress: function() {
 			this.oToolPage.setSideExpanded(!this.oToolPage.getSideExpanded());
+		},
+		onUserNamePress: function (event) {
+			var that = this;
+			var popover = new Popover({
+				showHeader: false,
+				placement: sap.m.PlacementType.Bottom,
+				content:[
+					new Button({
+						text: 'Feedback',
+						type: sap.m.ButtonType.Transparent,
+						icon: "sap-icon://feed"
+					}),
+					new Button({
+						text: 'Help',
+						type: sap.m.ButtonType.Transparent,
+						icon: "sap-icon://sys-help",
+						press: that.onHelp
+					}),
+					new Button({
+						text: 'Logout',
+						type: sap.m.ButtonType.Transparent,
+						icon: "sap-icon://log"
+					})
+				]
+			}).addStyleClass('sapMOTAPopover sapTntToolHeaderPopover');
+
+			popover.openBy(event.getSource());
 		}
 
 	});

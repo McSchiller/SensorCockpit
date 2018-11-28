@@ -25,7 +25,7 @@ sap.ui.define([
 	 * @alias com.penninkhof.qrcode.control.QRCode
 	 * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
 	 */
-	var QRCodeControl = Control.extend("de.blogspot.openui5.fc.control.QRCode", {
+	var QRCodeControl = Control.extend("schiller.SensorCockpit.control.QRCode", {
 
 		metadata: {
 			properties: {

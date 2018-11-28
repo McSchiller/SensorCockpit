@@ -5,7 +5,7 @@ sap.ui.define([
 ], function(UI5Object, MessageToast) {
 	"use strict";
 
-	return UI5Object.extend("de.blogspot.openui5.fc.FioriClient", {
+	return UI5Object.extend("schiller.SensorCockpit.FioriClient", {
 		
 		_bIsCordova: false,
 

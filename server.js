@@ -8,51 +8,20 @@ var path = require("path");
 
 // Create app variable to initialize Express 
 var app = express();
+const PORT = process.env.PORT || 4001;
 
 // Use static server to serve the Express Yourself Website
-app.use('/', express.static('webapp'));
-//app.use('/resources', express.static('resources/'));
+app.use(express.static('webapp'));
 
 // Enable Cross-origin resource sharing (CORS)  for app.
 app.use(cors("*"));
 
-// Define Odata model of the resource entity i.e. Product. 
-// The metadata is defined using OData type system called the Entity Data Model (EDM),
-// consisting of EntitySets, Entities, ComplexTypes and Scalar Types.
-var model = {
-    namespace: "ulofemi",
-    entityTypes: {
-        "Roomdata": {
-            "_id": {
-                "type": "Edm.String",
-                key: true
-            },
-            "SensorID": {
-                "type": "Edm.Int32"
-            },
-            "Temp": {
-                "type": "Edm.Double"
-            },
-            "Hum": {
-                "type": "Edm.Double"
-            },
-            "Timestamp": {
-                "type": "Edm.DateTime"
-            }
-        }
-    },
-    entitySets: {
-        "Roomdatas": {
-            entityType: "ulofemi.Roomdata"
-        }
-    }
-};
-
 // Instantiates ODataServer and assigns to odataserver variable.
-var odataServer = ODataServer().model(model);
+const EntityModel = require('./data/EntityModel.js');
+var odataServer = ODataServer().model(EntityModel);
 
 // Connection to demo database in MongoDB
-MongoClient.connect("mongodb://localhost/ulofemi" , { useNewUrlParser: true }, function (err, db) {
+MongoClient.connect("mongodb://localhost/SensorCockpit" , { useNewUrlParser: true }, function (err, db) {
     odataServer.adapter(Adapter(function (cb) {
         cb(err, db.db('myodatadb'));
     }));
@@ -63,18 +32,14 @@ app.get('/', function (req, res) {
     //__dirname : It will resolve to your project folder.
 });
 
-app.get('/candy', function (req, res) {
-    console.log("Secret");
-});
-
 // The directive to set app route path.
 app.use("/odata", function (req, res) {
     odataServer.handle(req, res);
 });
 
 // The app listens on port 3010 and prints the endpoint URI in console window.
-var server = app.listen(3010, function () {
+var server = app.listen(PORT, function () {
     console.log('Server running at: ');
-    console.log('Webserver     http://localhost:3010/');
-    console.log('oData-Service http://localhost:3010/odata/ ');
+    console.log('Webapp        http://localhost:'+PORT);
+    console.log('oData-Service http://localhost:'+PORT+'/odata/ ');
 });

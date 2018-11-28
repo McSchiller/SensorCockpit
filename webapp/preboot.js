@@ -52,7 +52,7 @@ function main() {
 			// sync (cachebuster issue on Component-preload)
 			new ComponentContainer("app", {
 				height: "100%",
-				name: "de.blogspot.openui5.fc",
+				name: "schiller.SensorCockpit",
 				manifestFirst: true
 			}).placeAt("content");
 		});
