@@ -21,7 +21,7 @@ const EntityModel = require('./data/EntityModel.js');
 var odataServer = ODataServer().model(EntityModel);
 
 // Connection to demo database in MongoDB
-MongoClient.connect("mongodb://localhost:27017/SensorCockpit" , { useNewUrlParser: true }, function (err, db) {
+MongoClient.connect("mongodb://localhost:28017/SensorCockpit" , { useNewUrlParser: true }, function (err, db) {
     if (err) {
         console.error('mongo connection error: ', err.message);
         
