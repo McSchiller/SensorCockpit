@@ -24,7 +24,7 @@ var odataServer = ODataServer().model(EntityModel);
 MongoClient.connect("mongodb://localhost:27017/SensorCockpit" , { useNewUrlParser: true }, function (err, db) {
     if (err) {
         console.error('mongo connection error: ', err.message);
-        reject(err);
+        
       } else {
         console.info("connected to mongodb");
         odataServer.adapter(Adapter(function (cb) {
